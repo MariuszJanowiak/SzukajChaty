@@ -67,7 +67,7 @@ else
 
     void TogglePortal(string portal, string? value)
     {
-        if (value == "true")
+        if (bool.TryParse(value, out var isChecked) && isChecked)
         {
             if (!_selectedPortals.Contains(portal))
                 _selectedPortals.Add(portal);
