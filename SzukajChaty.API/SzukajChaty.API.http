@@ -1,0 +1,6 @@
+@SzukajChaty.API_HostAddress = http://localhost:5027
+
+GET {{SzukajChaty.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

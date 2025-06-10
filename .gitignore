@@ -1,0 +1,37 @@
+# Build output
+bin/
+obj/
+out/
+publish/
+
+# Rider project files
+.idea/
+*.sln.iml
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+
+# ASP.NET Core scaffolding
+ScaffoldingReadMe.txt
+
+# wwwroot dependencies (e.g. from LibMan)
+wwwroot/lib/
+
+# Dependency directories
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Database files (if applicable)
+*.db
+*.sqlite
+*.bak
+*.cache
