@@ -23,8 +23,8 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-app.UseCors();
 app.UseRouting();
+app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();
