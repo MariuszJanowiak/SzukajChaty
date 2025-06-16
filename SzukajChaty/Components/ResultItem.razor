@@ -1,0 +1,23 @@
+@* Components/ResultList.razor *@
+
+@if (Listings == null)
+{
+    <p>Wprowadź filtry i kliknij "Szukaj"</p>
+}
+else if (!Listings.Any())
+{
+    <p>Brak wyników.</p>
+}
+else
+{
+    <ul class="result-list">
+        @foreach (var item in Listings)
+        {
+            <ResultItem Listing="item" />
+        }
+    </ul>
+}
+
+@code {
+    [Parameter] public List<Listing>? Listings { get; set; }
+}

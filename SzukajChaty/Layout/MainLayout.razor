@@ -1,5 +1,19 @@
 ﻿@inherits LayoutComponentBase
 
-<main class="p-4">
-    @Body
-</main>
+<div class="page">
+    <div class="top-row">
+        <span class="brand">SzukajChaty</span>
+    </div>
+
+    <div class="layout-body">
+        
+        <nav class="sidebar">
+            <NavLink href="/search" Match="NavLinkMatch.All">Wyszukiwarka</NavLink>
+        </nav>
+
+        <main class="content">
+            @Body
+        </main>
+        
+    </div>
+</div>

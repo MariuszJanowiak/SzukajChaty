@@ -1,59 +1,24 @@
 @page "/"
 @page "/search"
+@using SzukajChaty.Components
 @inject HttpClient Http
 
 <h3>Wyszukiwarka nieruchomości</h3>
 
-<div class="filters">
-    <input @bind="_city" placeholder="Miasto"/>
-    <select @bind="_type">
-        <option value="">Wszystkie typy</option>
-        <option value="flat">Mieszkanie</option>
-        <option value="house">Dom</option>
-    </select>
-    <input type="number" @bind="_priceMin" placeholder="Cena od"/>
-    <input type="number" @bind="_priceMax" placeholder="Cena do"/>
-    <button @onclick="SearchAsync">Szukaj</button>
-</div>
+<FilterPanel
+    @bind-City="_city"
+    @bind-Type="_type"
+    @bind-PriceMin="_priceMin"
+    @bind-PriceMax="_priceMax"
+    OnSearch="SearchAsync" />
 
-<h4>Portale</h4>
-@foreach (var portal in _allPortals)
-{
-    <label style="margin-right: 10px;">
-        <input type="checkbox"
-               value="@portal"
-               @onchange="e => TogglePortal(portal, e.Value?.ToString())" />
-        @portal
-    </label>
-}
+<PortalSelector 
+    Portals="_allPortals" 
+    SelectedPortals="_selectedPortals" 
+    OnToggle="HandlePortalToggle" />
 
-@if (_listings == null)
-{
-    <p>Wprowadź filtry i kliknij "Szukaj"</p>
-}
-else if (_listings.Count == 0)
-{
-    <p>Brak wyników.</p>
-}
-else
-{
-    <ul class="listings">
-        @foreach (var item in _listings)
-        {
-            <li class="listing">
-                <img src="@item.ImageUrl" width="120" />
-                <div>
-                    <strong>@item.Title</strong><br />
-                    <em>@item.Location</em><br />
-                    Cena: @item.Price zł<br />
-                    Dodano: @item.PublishedAt.ToShortDateString()<br />
-                    Źródło: @item.Source<br />
-                    <a href="@item.Url" target="_blank">Zobacz ogłoszenie</a>
-                </div>
-            </li>
-        }
-    </ul>
-}
+<ResultList Listings="_listings" />
+
 
 @code {
     private string _city = "";
@@ -65,8 +30,10 @@ else
     private readonly List<string> _allPortals = new() { "Otodom", "OLX", "Nieruchomosci-Online" };
     private readonly List<string> _selectedPortals = new();
 
-    void TogglePortal(string portal, string? value)
+    void HandlePortalToggle((string Portal, string? Value) data)
     {
+        var (portal, value) = data;
+
         if (bool.TryParse(value, out var isChecked) && isChecked)
         {
             if (!_selectedPortals.Contains(portal))
@@ -77,6 +44,7 @@ else
             _selectedPortals.Remove(portal);
         }
     }
+
 
     async Task SearchAsync()
     {

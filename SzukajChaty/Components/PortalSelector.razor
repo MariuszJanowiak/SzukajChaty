@@ -1,0 +1,20 @@
+@* Components/PortalSelector.razor *@
+
+<div class="portal-selector">
+    @foreach (var portal in Portals)
+    {
+        <label>
+            <input type="checkbox"
+                   checked="@SelectedPortals.Contains(portal)"
+                   @onchange="e => OnToggle.InvokeAsync((portal, e.Value?.ToString()))" />
+            @portal
+        </label>
+    }
+</div>
+
+@code {
+    [Parameter] public List<string> Portals { get; set; } = new();
+    [Parameter] public List<string> SelectedPortals { get; set; } = new();
+
+    [Parameter] public EventCallback<(string Portal, string? Value)> OnToggle { get; set; }
+}
