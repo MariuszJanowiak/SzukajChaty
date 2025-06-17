@@ -1,5 +1,5 @@
 using HtmlAgilityPack;
-using SzukajChaty.API.Models;
+using SzukajChaty.Shared.Models;
 using SzukajChaty.API.Services;
 using System.Net;
 using System.Web;

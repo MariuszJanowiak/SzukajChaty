@@ -1,23 +1,17 @@
-@* Components/ResultList.razor *@
+@* Components/ResultItem.razor *@
 
-@if (Listings == null)
-{
-    <p>Wprowadź filtry i kliknij "Szukaj"</p>
-}
-else if (!Listings.Any())
-{
-    <p>Brak wyników.</p>
-}
-else
-{
-    <ul class="result-list">
-        @foreach (var item in Listings)
-        {
-            <ResultItem Listing="item" />
-        }
-    </ul>
-}
+<div class="result-item">
+    <img src="@Listing.ImageUrl" alt="@Listing.Title" width="120" height="90" />
+    <div class="details">
+        <strong>@Listing.Title</strong><br />
+        <em>@Listing.Location</em><br />
+        Cena: @Listing.Price zł<br />
+        Dodano: @Listing.PublishedAt.ToShortDateString()<br />
+        Źródło: @Listing.Source<br />
+        <a href="@Listing.Url" target="_blank">Zobacz ogłoszenie</a>
+    </div>
+</div>
 
 @code {
-    [Parameter] public List<Listing>? Listings { get; set; }
+    [Parameter] public Listing Listing { get; set; } = default!;
 }

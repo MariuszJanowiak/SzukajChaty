@@ -1,11 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# 
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SzukajChaty", "SzukajChaty\SzukajChaty.csproj", "{B17935DF-C150-4751-AF72-3A593FA71087}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SzukajChaty.API", "SzukajChaty.API\SzukajChaty.API.csproj", "{97D15BF1-A782-42AA-BEDC-F120869EC075}"
 	ProjectSection(ProjectDependencies) = postProject
 		{B17935DF-C150-4751-AF72-3A593FA71087} = {B17935DF-C150-4751-AF72-3A593FA71087}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SzukajChaty.Shared", "SzukajChaty.Shared\SzukajChaty.Shared.csproj", "{0EC32E72-3B63-410E-A8A6-B55E9FF15D06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,5 +24,9 @@ Global
 		{97D15BF1-A782-42AA-BEDC-F120869EC075}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97D15BF1-A782-42AA-BEDC-F120869EC075}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97D15BF1-A782-42AA-BEDC-F120869EC075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EC32E72-3B63-410E-A8A6-B55E9FF15D06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EC32E72-3B63-410E-A8A6-B55E9FF15D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EC32E72-3B63-410E-A8A6-B55E9FF15D06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EC32E72-3B63-410E-A8A6-B55E9FF15D06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

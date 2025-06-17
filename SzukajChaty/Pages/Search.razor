@@ -1,6 +1,7 @@
 @page "/"
 @page "/search"
 @using SzukajChaty.Components
+@using SzukajChaty.Shared.Models
 @inject HttpClient Http
 
 <h3>Wyszukiwarka nieruchomości</h3>
@@ -15,10 +16,9 @@
 <PortalSelector 
     Portals="_allPortals" 
     SelectedPortals="_selectedPortals" 
-    OnToggle="HandlePortalToggle" />
+    OnToggle="TogglePortal" />
 
 <ResultList Listings="_listings" />
-
 
 @code {
     private string _city = "";
@@ -27,10 +27,10 @@
     private decimal? _priceMax;
 
     private List<Listing>? _listings;
-    private readonly List<string> _allPortals = new() { "Otodom", "OLX", "Nieruchomosci-Online" };
+    private static readonly List<string> _allPortals = new() { "Otodom", "OLX", "Nieruchomosci-Online" };
     private readonly List<string> _selectedPortals = new();
 
-    void HandlePortalToggle((string Portal, string? Value) data)
+    void TogglePortal((string Portal, string? Value) data)
     {
         var (portal, value) = data;
 
@@ -45,36 +45,26 @@
         }
     }
 
-
     async Task SearchAsync()
     {
-        var query = $"city={Uri.EscapeDataString(_city)}&type={_type}&priceMin={_priceMin}&priceMax={_priceMax}";
-        foreach (var portal in _selectedPortals)
+        var criteria = new SearchCriteria
         {
-            query += $"&portals={Uri.EscapeDataString(portal)}";
-        }
-        var url = $"http://localhost:5028/api/search?{query}";
-
+            City = _city,
+            Type = _type,
+            PriceMin = _priceMin,
+            PriceMax = _priceMax,
+            Portals = _selectedPortals
+        };
 
         try
         {
-            _listings = await Http.GetFromJsonAsync<List<Listing>>(url);
+            var response = await Http.PostAsJsonAsync("http://localhost:5028/api/search", criteria);
+            _listings = await response.Content.ReadFromJsonAsync<List<Listing>>();
         }
         catch (Exception ex)
         {
             Console.WriteLine("Błąd przy pobieraniu danych: " + ex.Message);
             _listings = new();
         }
-    }
-
-    public class Listing
-    {
-        public string? Title { get; set; }
-        public string? Url { get; set; }
-        public string? ImageUrl { get; set; }
-        public DateTime PublishedAt { get; set; }
-        public decimal Price { get; set; }
-        public string? Location { get; set; }
-        public string? Source { get; set; }
     }
 }

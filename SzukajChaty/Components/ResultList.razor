@@ -1,5 +1,17 @@
-<h3>ResultList</h3>
+@* Components/ResultItem.razor *@
+
+<div class="result-item">
+    <img src="@Listing.ImageUrl" alt="@Listing.Title" width="120" height="90" />
+    <div class="details">
+        <strong>@Listing.Title</strong><br />
+        <em>@Listing.Location</em><br />
+        Cena: @Listing.Price zł<br />
+        Dodano: @Listing.PublishedAt.ToShortDateString()<br />
+        Źródło: @Listing.Source<br />
+        <a href="@Listing.Url" target="_blank">Zobacz ogłoszenie</a>
+    </div>
+</div>
 
 @code {
-    
+    [Parameter] public Listing Listing { get; set; } = default!;
 }

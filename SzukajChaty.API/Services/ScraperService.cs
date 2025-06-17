@@ -1,4 +1,4 @@
-using SzukajChaty.API.Models;
+using SzukajChaty.Shared.Models;
 
 namespace SzukajChaty.API.Services;
 

@@ -1,16 +1,16 @@
 @* Components/FilterPanel.razor *@
 
 <div class="filter-panel">
-    <input @bind-Value="City" placeholder="Miasto" />
+    <input @bind="City" placeholder="Miasto" />
 
-    <select @bind-Value="Type">
+    <select @bind="Type">
         <option value="">Wszystkie typy</option>
         <option value="flat">Mieszkanie</option>
         <option value="house">Dom</option>
     </select>
 
-    <input type="number" @bind-Value="PriceMin" placeholder="Cena od" />
-    <input type="number" @bind-Value="PriceMax" placeholder="Cena do" />
+    <input type="number" @bind="PriceMin" placeholder="Cena od" />
+    <input type="number" @bind="PriceMax" placeholder="Cena do" />
 
     <button @onclick="OnSearchClicked">Szukaj</button>
 </div>

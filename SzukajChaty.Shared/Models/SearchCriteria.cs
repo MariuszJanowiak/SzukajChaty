@@ -1,4 +1,4 @@
-namespace SzukajChaty.API.Models;
+namespace SzukajChaty.Shared.Models;
 
 public class SearchCriteria
 {

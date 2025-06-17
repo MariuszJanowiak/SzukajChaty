@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using SzukajChaty.API.Models;
+using SzukajChaty.Shared.Models;
 using SzukajChaty.API.Services;
 
 namespace SzukajChaty.API.Controllers;
