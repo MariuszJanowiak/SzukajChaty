@@ -48,7 +48,7 @@ public class OlxScraper : IScraper
                     Title = WebUtility.HtmlDecode(titleNode?.InnerText?.Trim() ?? ""),
                     Price = ParsePrice(priceNode?.InnerText),
                     Location = locationNode?.InnerText?.Split('-')?.FirstOrDefault()?.Trim() ?? "",
-                    PublishedAt = DateTime.Now, // OLX nie pokazuje dokładnej daty, ustawiamy teraz
+                    PublishedAt = DateTime.Now,
                     ImageUrl = imgNode?.GetAttributeValue("src", "") ?? "",
                     Url = fullUrl,
                     Source = SourceName
@@ -56,7 +56,6 @@ public class OlxScraper : IScraper
             }
             catch
             {
-                // ignoruj błędne elementy
             }
         }
 

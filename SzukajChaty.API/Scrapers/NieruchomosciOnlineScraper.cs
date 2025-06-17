@@ -57,7 +57,6 @@ public class NieruchomosciOnlineScraper : IScraper
             }
             catch
             {
-                // ignoruj błędne wpisy
             }
         }
 
@@ -75,7 +74,6 @@ public class NieruchomosciOnlineScraper : IScraper
     {
         if (string.IsNullOrWhiteSpace(input)) return DateTime.Now;
 
-        // Przyjmujemy że wpis jest np. "Dzisiaj, 08:12" lub "Wczoraj, 14:21"
         input = input.ToLower();
         if (input.Contains("dzisiaj")) return DateTime.Today;
         if (input.Contains("wczoraj")) return DateTime.Today.AddDays(-1);

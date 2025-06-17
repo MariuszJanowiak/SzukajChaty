@@ -15,7 +15,6 @@ public class ScraperService
     {
         var activeScrapers = _scrapers;
 
-        // If no specific portals are selected run all registered scrapers
         if (criteria.Portals?.Count > 0)
         {
             activeScrapers = activeScrapers

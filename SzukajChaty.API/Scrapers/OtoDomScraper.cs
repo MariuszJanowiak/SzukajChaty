@@ -20,7 +20,7 @@ public class OtoDomScraper : IScraper
         var web = new HtmlWeb();
         web.PreRequest = request =>
         {
-            request.UserAgent = "Mozilla/5.0"; // Otodom może blokować boty
+            request.UserAgent = "Mozilla/5.0";
             return true;
         };
 
@@ -59,7 +59,6 @@ public class OtoDomScraper : IScraper
             }
             catch
             {
-                // ignoruj pojedyncze błędy parsowania
             }
         }
 
